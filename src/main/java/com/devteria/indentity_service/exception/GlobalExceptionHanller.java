@@ -1,0 +1,22 @@
+package com.devteria.indentity_service.exception;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+@ControllerAdvice
+public class GlobalExceptionHanller {
+// #5 Exception Handling and validation
+
+    @ExceptionHandler(value = RuntimeException.class)
+    ResponseEntity<String> handlingRuntimeException(RuntimeException exception){
+        return ResponseEntity.badRequest().body(exception.getMessage());
+    }
+
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    ResponseEntity<String> handingValidation(MethodArgumentNotValidException exception){
+        return ResponseEntity.badRequest().body(exception.getFieldError().getDefaultMessage());
+    }
+
+}
