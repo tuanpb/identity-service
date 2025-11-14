@@ -3,6 +3,8 @@ package com.devteria.indentity_service.service;
 import com.devteria.indentity_service.dto.request.UserCreationRequest;
 import com.devteria.indentity_service.dto.request.UserUpdateRequest;
 import com.devteria.indentity_service.entity.User;
+import com.devteria.indentity_service.exception.AppException;
+import com.devteria.indentity_service.exception.ErrorCode;
 import com.devteria.indentity_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,7 @@ public class UserService {
         User user = new User();
 
         if(userRepository.existsByUsername(request.getUsername()))
-            throw new RuntimeException("User exited");
+            throw new AppException(ErrorCode.USER_EXISTED);
 
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());

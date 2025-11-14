@@ -1,5 +1,6 @@
 package com.devteria.indentity_service.controller;
 
+import com.devteria.indentity_service.dto.request.ApiResponse;
 import com.devteria.indentity_service.dto.request.UserCreationRequest;
 import com.devteria.indentity_service.dto.request.UserUpdateRequest;
 import com.devteria.indentity_service.entity.User;
@@ -17,9 +18,11 @@ public class UserController {
     private UserService userService;
 
     @PostMapping()
-    User createUser(@RequestBody @Valid UserCreationRequest request){
-        // #5 Exception Handling and validation
-        return userService.createUser(request);
+    ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request){
+        ApiResponse<User> apiResponse = new ApiResponse<>();
+
+        apiResponse.setResult(userService.createUser(request));
+        return apiResponse;
     }
 
     @GetMapping

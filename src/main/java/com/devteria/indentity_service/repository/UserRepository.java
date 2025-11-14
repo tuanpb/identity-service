@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-    // #5 Exception Handling and validation
+    // #4 Exception Handling and validation
     boolean existsByUsername(String username);
 }

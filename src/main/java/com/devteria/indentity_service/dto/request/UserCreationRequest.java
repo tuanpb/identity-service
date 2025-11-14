@@ -1,16 +1,17 @@
 package com.devteria.indentity_service.dto.request;
 
+import com.devteria.indentity_service.exception.ErrorCode;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public class UserCreationRequest {
 
-    // #5 Exception Handling and validation
-    @Size(min = 8, message = "Username must not be least a 8 character")
+    // #3 Exception Handling and validation
+    @Size(min = 8, message = "USSERNAME_INVALID")
     private String username;
 
-    @Size(min = 8, message = "Password must not be least a 8 character")
+    @Size(min = 8, message = "PASSWORD_INVALID")
     private String password;
 
     private String firstname;
